@@ -9,9 +9,9 @@
  * Vehicule constructor function
  */
 //--------------------------------------------------------------------------------------------------
-function Vehicule(name, capacity, path, string_object)
+function Vehicule(name, capacity, path, string_object, icon)
 {
-    Service.call(this, name, capacity, string_object);
+    Service.call(this, name, capacity, string_object, icon);
     this.path = path;
 }
 

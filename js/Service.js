@@ -11,12 +11,13 @@
  * Service constructor function.
  */
 //--------------------------------------------------------------------------------------------------
-function Service(name,capacity, string_object)
+function Service(name, capacity, string_object, icon)
 {
     this.name = name;
     this.capacity = capacity;
     this.occupancy = 0;
     this.string_object = string_object;
+    this.icon = icon;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -51,5 +52,6 @@ Service.prototype.Update_String = function()
                     +this.occupancy
                     +"/"
                     +this.capacity;
+                
 }
 

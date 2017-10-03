@@ -9,9 +9,9 @@
  * Bus constructor function
  */
 //--------------------------------------------------------------------------------------------------
-function Bus(name, capacity, path, string_object)
+function Bus(name, capacity, path, string_object, icon)
 {
-    Vehicule.call(this, name, capacity, path, string_object);
+    Vehicule.call(this, name, capacity, path, string_object, icon);
 }
 
 Bus.prototype = Object.create(Vehicule.prototype);
