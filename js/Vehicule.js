@@ -24,7 +24,7 @@ Vehicule.speed = 50;
  * Make the vehicule follow its entire path
  */
 //--------------------------------------------------------------------------------------------------
-Vehicule.prototype.runPath = async function()
+Vehicule.prototype.runPath = function()
 {
     var thisVehicule = this;
     
@@ -40,12 +40,16 @@ Vehicule.prototype.runPath = async function()
         console.log("Animation duration: " + duration + "\tDistance: " + distance + "\tSpeed: " + (distance/duration));
 
         thisVehicule.icon.animate(duration).center(thisVehicule.path[i].cx(),
-                                           thisVehicule.path[i].cy());
+                                           thisVehicule.path[i].cy())
+        .after(function()
+            {
+                if (Math.random() > 0.5)
+                    thisVehicule.addPersons(1);
+                else 
+                    thisVehicule.removePersons(1);
+                console.log(thisVehicule.occupancy)
+            });
 
-        // Actual code 
-        /*
-        thisVehicule.icon.animate(duration).center(thisVehicule.path[i].cx(),
-                                           thisVehicule.path[i].cy());
-        */
+
     }
 }
