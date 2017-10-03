@@ -45,7 +45,7 @@ Service.prototype.removePersons = function(n)
  * Update name string.
  */
 //--------------------------------------------------------------------------------------------------
-Service.prototype.Update_String = function()
+Service.prototype.updateString = function()
 {
     this.string_object.innerHTML =     this.name
                     +":\t"
