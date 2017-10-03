@@ -24,8 +24,3 @@ document.addEventListener("DOMContentLoaded", function(event)
     });
 
 });
-
-//function Bus(name, capacity, path, string_object)
-//{
-    //Vehicule.call(this, name, capacity, path, string_object);
-//}

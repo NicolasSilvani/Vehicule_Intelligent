@@ -1,20 +1,20 @@
 //--------------------------------------------------------------------------------------------------
 /*
- * Vehicule class file.
+ * Building class file.
  */
 //--------------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------------
 /*
- * Vehicule constructor function
+ * Building constructor function
  */
 //--------------------------------------------------------------------------------------------------
-function Vehicule(name, capacity, path, string_object, icon)
+function Building(name, capacity, path, string_object, icon)
 {
     Service.call(this, name, capacity, string_object, icon);
     this.path = path;
 }
 
-Vehicule.prototype = Object.create(Service.prototype);
-Vehicule.prototype.constructor = Vehicule;
+Building.prototype = Object.create(Service.prototype);
+Building.prototype.constructor = Building;
 
