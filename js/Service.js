@@ -51,5 +51,6 @@ Service.prototype.Update_String = function()
                     +this.occupancy
                     +"/"
                     +this.capacity;
+                
 }
 
