@@ -34,5 +34,6 @@ Bus.prototype.runPath = function()
             {
                 thisBus.runPath();
             });
+    console.log(this.name);
 }
 

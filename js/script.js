@@ -29,25 +29,25 @@ document.addEventListener("DOMContentLoaded", function(event)
             ];
 
         Bus1 = new Bus("bus1",
-                            30,
-                            path,
-                            document.getElementById("Bus1_txt"),
-                            SVG.adopt(cdo.getElementById("bus1")));
+                        30,
+                        path,
+                        document.getElementById("Bus1_txt"),
+                        SVG.adopt(cdo.getElementById("bus1")));
+
         Bus2 = new Bus("bus2",
-                    30,
-                    path,
-                    document.getElementById("Bus1_txt"),
-                    SVG.adopt(cdo.getElementById("bus2")));
+                        30,
+                        path,
+                        document.getElementById("Bus2_txt"),
+                        SVG.adopt(cdo.getElementById("bus2")));
 
         Bus1.addPersons(4);    
         Bus1.updateString();
         //Bus1.icon.animate(100).center(path[0].cx(), path[0].cy());
         Bus1.runPath();
+        Bus2.runPath();
         //busIcon.animate().dmove(1000,0);
         //Bus1.icon.animate(500).center(path[0].cx(), path[0].cy());
         //Bus2.icon.animate(500).center(0,0);
-
-        p = SVG.adopt(cdo.getElementById("point13"));
         
 
 

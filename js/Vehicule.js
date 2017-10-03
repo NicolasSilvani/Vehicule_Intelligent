@@ -37,17 +37,17 @@ Vehicule.prototype.runPath = function()
 
         var duration = Math.round(distance*1000/Vehicule.speed);
 
-        console.log("Animation duration: " + duration + "\tDistance: " + distance + "\tSpeed: " + (distance/duration));
+        //console.log("Animation duration: " + duration + "\tDistance: " + distance + "\tSpeed: " + (distance/duration));
 
         thisVehicule.icon.animate(duration).center(thisVehicule.path[i].cx(),
                                            thisVehicule.path[i].cy())
         .after(function()
             {
-                if (Math.random() > 0.5)
+                if (Math.random() > 0.3)
                     thisVehicule.addPersons(1);
                 else 
                     thisVehicule.removePersons(1);
-                console.log(thisVehicule.occupancy)
+                Service.prototype.updateString.call(thisVehicule);
             });
 
 
