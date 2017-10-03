@@ -11,6 +11,11 @@ Service.prototype.addPersons = function(n)
     this.occupancy += n;
 }
 
+Service.prototype.removePersons = function(n)
+{
+    this.occupancy -= n;
+}
+
 Service.prototype.Update_String = function()
 {
     this.string_object.innerHTML =     this.name
