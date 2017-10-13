@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function(event)
             SVG.adopt(cdo.getElementById("point5")),
             SVG.adopt(cdo.getElementById("point15")),
             SVG.adopt(cdo.getElementById("point16")),
-            SVG.adopt(cdo.getElementById("point17"))
+            SVG.adopt(cdo.getElementById("point4-5"))
             ];
 
         Bus1 = new Bus("bus1",
