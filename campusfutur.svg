@@ -30,8 +30,8 @@
      showgrid="false"
      showguides="false"
      inkscape:zoom="0.70710678"
-     inkscape:cx="255.28246"
-     inkscape:cy="336.49165"
+     inkscape:cx="-6.8139666"
+     inkscape:cy="320.93826"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -652,6 +652,13 @@
        id="arretparc"
        cx="65.171059"
        cy="44.41988"
+       rx="0.45681882"
+       ry="0.64580697" />
+    <ellipse
+       style="display:inline;opacity:1;fill:#000000;fill-opacity:1;stroke:#5a1a1a;stroke-width:1.33040988;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="point4-5"
+       cx="75.935417"
+       cy="138.01283"
        rx="0.45681882"
        ry="0.64580697" />
   </g>
