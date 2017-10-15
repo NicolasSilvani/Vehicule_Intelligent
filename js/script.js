@@ -42,18 +42,24 @@ document.addEventListener("DOMContentLoaded", function(event)
 
         Bus1.addPersons(4);    
         Bus1.updateString();
-        //Bus1.icon.animate(100).center(path[0].cx(), path[0].cy());
-        //Bus1.runPath();
-        Bus1.setString("Hello");
+        Bus1.runPath();
+        //Bus1.setString("Hello");
         Bus2.runPath();
         //busIcon.animate().dmove(1000,0);
-        //Bus1.icon.animate(500).center(path[0].cx(), path[0].cy());
-        //Bus2.icon.animate(500).center(0,0);
         
-
-
-
-
     });
 
+    spawnButton = document.getElementById("spawnButton");
+    var nUsers = 0;
+    spawnButton.addEventListener('mouseup', function(){
+        var userDiv = document.createElement("user"+nUsers);
+        document.body.appendChild(userDiv);
+        User = new Utilisateur('randomMan',
+                SVG.adopt(cdo.getElementById("point1")),
+                SVG.adopt(cdo.getElementById("point3")),
+                userDiv,
+                SVG.adopt(cdo.getElementById("user")));
+        User.setString("Hello I'm user "+nUsers);
+        console.log("Hello user!");
+    });
 });
