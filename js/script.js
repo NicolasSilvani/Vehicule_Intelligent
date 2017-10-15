@@ -99,11 +99,12 @@ document.addEventListener("DOMContentLoaded", function(event)
         var userDiv = document.createElement("user"+nUsers);
         document.body.appendChild(userDiv);
         User = new Utilisateur('randomMan',
-                SVG.adopt(cdo.getElementById("point1")),
-                SVG.adopt(cdo.getElementById("point3")),
+                "arretstation",
+                "arrethopital",
                 userDiv,
                 SVG.adopt(cdo.getElementById("user")));
         User.setString("Hello I'm user "+nUsers);
         console.log("Hello user!");
+        Bus1.users.push(User);
     });
 });

@@ -19,6 +19,8 @@ function Utilisateur(name, start_localisation, goal, string_object, icon)
     this.end_time = null;
     this.string_object = string_object;
     this.icon = icon;
+
+    this.inVehicule = false;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -39,9 +41,9 @@ Utilisateur.prototype.setString = function(newString)
 //--------------------------------------------------------------------------------------------------
 Utilisateur.prototype.printTime = function()
 {
-    if(end_time != null)
+    if(this.end_time != null)
     {
-        var travelTime = start_time - end_time;
+        var travelTime = this.end_time - this.start_time;
         var travelTimeStr = this.name+"'s travel time is "+travelTime;
         this.setString(travelTime);
     }
@@ -49,5 +51,29 @@ Utilisateur.prototype.printTime = function()
     {
         console.log("error: end_time is null.");
     }
+}
+
+//--------------------------------------------------------------------------------------------------
+/*
+ * User gets in the vehicule
+ */
+//--------------------------------------------------------------------------------------------------
+Utilisateur.prototype.getIn = function()
+{
+    this.inVehicule = true;
+    console.log("I'm in !");
+}
+
+//--------------------------------------------------------------------------------------------------
+/*
+ * User gets out of the vehicule
+ */
+//--------------------------------------------------------------------------------------------------
+Utilisateur.prototype.getOut = function()
+{
+    console.log("I'm out!");
+    this.inVehicule = false;
+    this.end_time = new Date().getTime();
+    this.printTime();
 }
 

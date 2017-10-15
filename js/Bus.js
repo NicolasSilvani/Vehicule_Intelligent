@@ -54,13 +54,43 @@ Bus.prototype.runPath = function()
 
 }
 
-Bus.prototype.stop = function()
+Bus.prototype.stop = function(next_index)
 {
+    var thisBus = this;
     if (Math.random() > 0.5)
         this.addPersons(Math.floor(Math.random()*3));
     else 
         this.removePersons(Math.floor(Math.random()*3));
     Service.prototype.updateString.call(this);
 
+
+    if (this.users.length > 0)
+    {   
+        //var users_that_got_out = [];
+        this.users.forEach(function(user)
+        {
+            if (user.inVehicule)
+            {   
+                if (user.goal == thisBus.path[next_index])
+                {
+                    user.getOut();
+                    //users_that_got_out.push(user);
+                    thisBus.users.splice(thisBus.users.indexOf(user), 1);
+
+                }
+            }
+            else
+            {
+                if (user.start_localisation == thisBus.path[next_index])
+                    user.getIn();
+            }
+        });
+
+        /*users_that_got_out.forEach(function(user)
+        {
+            this.users.splice(users.indexOf(user), 1);
+        });*/
+
+    }
 }
 

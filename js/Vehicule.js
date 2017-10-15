@@ -22,7 +22,7 @@ function Vehicule(name, capacity, path, string_object, icon)
     Service.call(this, name, capacity, string_object, icon);
     this.path = path;
     this.path_index = 0;
-
+    this.users = ["test"];
 }
 
 Vehicule.prototype = Object.create(Service.prototype);
@@ -98,7 +98,7 @@ Vehicule.prototype.oneStep = function()
         {
             // Si c'est un arrêt
             if (destination_is_stop)
-                thisVehicule.stop();
+                thisVehicule.stop(next_index);
 
 
             Service.prototype.updateString.call(thisVehicule);
