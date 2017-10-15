@@ -55,3 +55,13 @@ Service.prototype.updateString = function()
                 
 }
 
+//--------------------------------------------------------------------------------------------------
+/*
+ * Set name string.
+ */
+//--------------------------------------------------------------------------------------------------
+Service.prototype.setString = function(newString)
+{
+    this.string_object.innerHTML = newString;
+}
+

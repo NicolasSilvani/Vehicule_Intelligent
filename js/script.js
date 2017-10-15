@@ -43,7 +43,8 @@ document.addEventListener("DOMContentLoaded", function(event)
         Bus1.addPersons(4);    
         Bus1.updateString();
         //Bus1.icon.animate(100).center(path[0].cx(), path[0].cy());
-        Bus1.runPath();
+        //Bus1.runPath();
+        Bus1.setString("Hello");
         Bus2.runPath();
         //busIcon.animate().dmove(1000,0);
         //Bus1.icon.animate(500).center(path[0].cx(), path[0].cy());

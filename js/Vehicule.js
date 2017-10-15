@@ -18,7 +18,7 @@ function Vehicule(name, capacity, path, string_object, icon)
 Vehicule.prototype = Object.create(Service.prototype);
 Vehicule.prototype.constructor = Vehicule;
 
-Vehicule.speed = 50;
+Vehicule.speed = 25;
 var Pcx;
 var Pcy;
 var Vcx;
@@ -48,7 +48,6 @@ Vehicule.prototype.runPath = function()
 
         console.log("Animation duration: " + duration + "\tDistance: " + distance + "\tSpeed: " + (distance/duration));
 
-        console.log("x "+thisVehicule.icon.cx()+ "   y "+thisVehicule.icon.cy());
         thisVehicule.icon.animate(duration, '-', 0).center(thisVehicule.path[i].cx(),
                                            thisVehicule.path[i].cy())
         .after(function()
