@@ -3,6 +3,14 @@
  * Vehicule class file.
  */
 //--------------------------------------------------------------------------------------------------
+function wait(ms){
+   var start = new Date().getTime();
+   var end = start;
+   while(end < start + ms) {
+     end = new Date().getTime();
+  }
+}
+
 
 //--------------------------------------------------------------------------------------------------
 /*
@@ -13,16 +21,14 @@ function Vehicule(name, capacity, path, string_object, icon)
 {
     Service.call(this, name, capacity, string_object, icon);
     this.path = path;
+    this.path_index = 0;
+
 }
 
 Vehicule.prototype = Object.create(Service.prototype);
 Vehicule.prototype.constructor = Vehicule;
 
-Vehicule.speed = 25;
-var Pcx;
-var Pcy;
-var Vcx;
-var Vcy;
+
 //--------------------------------------------------------------------------------------------------
 /*
  * Make the vehicule follow its entire path
@@ -31,7 +37,7 @@ var Vcy;
 Vehicule.prototype.runPath = function()
 {
     var thisVehicule = this;
-    
+
     var duration = 0;
     var prevX = thisVehicule.icon.cx();
     var prevY = thisVehicule.icon.cy();
@@ -43,11 +49,9 @@ Vehicule.prototype.runPath = function()
 
         duration = Math.round(distance*1000/Vehicule.speed);
 
-        prevX = thisVehicule.path[i].cx();
-        prevY = thisVehicule.path[i].cy();
-
         console.log("Animation duration: " + duration + "\tDistance: " + distance + "\tSpeed: " + (distance/duration));
 
+        console.log("x "+thisVehicule.icon.cx()+ "   y "+thisVehicule.icon.cy());
         thisVehicule.icon.animate(duration, '-', 0).center(thisVehicule.path[i].cx(),
                                            thisVehicule.path[i].cy())
         .after(function()
@@ -56,8 +60,80 @@ Vehicule.prototype.runPath = function()
                     thisVehicule.addPersons(1);
                 else 
                     thisVehicule.removePersons(1);
-                Service.prototype.updateString.call(thisVehicule);
             });
 
     }
+    
+}
+
+Vehicule.prototype.oneStep = function()
+{
+
+    var thisVehicule = this;
+
+    var next_index = thisVehicule.nextPathIndex();
+    var destination = thisVehicule.path[next_index];
+
+    var duration = thisVehicule.duration(   thisVehicule.path[thisVehicule.path_index],
+                                            thisVehicule.path[thisVehicule.nextPathIndex()]);
+    var dest;
+    var destination_is_stop;
+    if (isStop(thisVehicule.path[next_index]))
+    {
+        dest = STOPS[thisVehicule.path[next_index]];
+        destination_is_stop = true;
+    }
+    else 
+    {
+        
+        dest = WAYPOINTS[thisVehicule.path[next_index]];
+        destination_is_stop = false;
+    }
+
+    thisVehicule.path_index = next_index;
+
+    thisVehicule.icon.animate(duration, '-', 0).center( dest.cx(),
+                                                        dest.cy())
+    .after(function()
+        {
+            // Si c'est un arrêt
+            if (destination_is_stop)
+                thisVehicule.stop();
+
+
+            Service.prototype.updateString.call(thisVehicule);
+        });
+
+
+}
+
+
+Vehicule.prototype.nextPathIndex = function() 
+{
+    return (this.path_index + 1) % (this.path.length - 1);
+}
+
+Vehicule.prototype.duration = function(origin, destination)
+{
+    /*var src;
+    console.log(origin);
+    if (isStop(origin))
+        src = STOPS[origin];
+    else 
+        src = WAYPOINTS[origin];
+
+    var dest;
+    if (isStop(destination))
+        dest = STOPS[destination];
+    else 
+        dest = WAYPOINTS[destination];
+
+
+    var distance = Math.pow(dest.cx() - src.cx(), 2);
+    distance += Math.pow(dest.cy() - src.cy(), 2);
+    distance = Math.sqrt(distance);
+
+    return Math.round(distance*1000/this.speed);
+    */
+    return 1000;
 }
