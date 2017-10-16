@@ -32,7 +32,7 @@ Guy.prototype.handleUser = function(user)
 
     if (best_transport instanceof Bus)
     {   
-        console.log(user.name+" should use "+best_transport.name);
+        console.log(user.name+" should use "+best_transport.name+" to go from "+user.start_localisation+" to "+user.goal);
         best_transport.users.push(user);
     }
     // Call vehicule
@@ -58,7 +58,8 @@ Guy.prototype.best_transport = function(origin, destination)
                 shortest_travel_time = travel_time;
                 best_bus = Bus;
             }
-            console.log(Bus.name+" "+travel_time);
+
+            //console.log(Bus.name+" user index "+user_index+" current_index "+current_index+" travel_time "+travel_time);
         });
 
     best_transport = best_bus;

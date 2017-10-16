@@ -129,16 +129,27 @@ document.addEventListener("DOMContentLoaded", function(event)
         list_of_vehicules['Bus'] = [Bus1, Bus2];
         list_of_vehicules['Car'] = [Car1];
         GUY = new Guy(list_of_vehicules); 
+        nUsers = 0;
+
     });
 
     spawnButton = document.getElementById("spawnButton");
-    var nUsers = 0;
     spawnButton.addEventListener('mouseup', function(){
         var userDiv = document.createElement("user"+nUsers);
         document.body.appendChild(userDiv);
-        var User = new Utilisateur('randomMan',
-                "arretstation",
-                "arrethopital",
+
+        var keys = Object.keys(STOPS);
+        var start_id = Math.floor(Math.random() * keys.length);
+        var stop_id = Math.floor(Math.random() * keys.length);
+
+        while(start_id == stop_id)
+        {
+            stop_id = Math.floor(Math.random() * keys.length);
+        }
+
+        var User = new Utilisateur("user"+nUsers,
+                keys[start_id],
+                keys[stop_id],
                 userDiv,
                 SVG.adopt(cdo.getElementById("user")));
         User.setString("Hello I'm user "+nUsers);
