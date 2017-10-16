@@ -29,10 +29,21 @@ Guy.prototype.handleUser = function(user)
     var best_transport = this.best_transport(user.start_localisation, user.goal);
     // Get path for vehicule
 
+    console.log(user.name+" should use "+best_transport.name+" to go from "+user.start_localisation+" to "+user.goal);
+
     if (best_transport instanceof Bus)
     {   
-        console.log(user.name+" should use "+best_transport.name+" to go from "+user.start_localisation+" to "+user.goal);
-        best_transport.users.push(user);
+        best_transport.transportUser(user);
+    }
+    else if (best_transport instanceof Voiture)
+    {
+        var path = [best_transport.current_position];
+        if (best_transport.current_position != user.start_localisation)
+            path = path.concat(path_dict[best_transport.current_position][user.start_localisation]);
+
+        path = path.concat(path_dict[user.start_localisation][user.goal]);
+
+        best_transport.transportUser(user, path);
     }
     // Call vehicule
 }
@@ -48,7 +59,7 @@ Guy.prototype.best_transport = function(origin, destination)
     var best_transport;
     var shortest_travel_time = 999999999999;
 
-    var best_bus;
+
     thisGuy.vehicules['Bus'].forEach(function(thisBus)
         {
             var user_index = thisBus.path.indexOf(origin);
@@ -57,31 +68,51 @@ Guy.prototype.best_transport = function(origin, destination)
             var path = [];
             if (current_index > user_index)
             {
-                path.push(thisBus.path.slice(current_index, thisBus.path.length-1));
-                path.push(thisBus.path.slice(0, user_index));
+                path = path.concat(thisBus.path.slice(current_index, thisBus.path.length-1));
+                path = path.concat(thisBus.path.slice(0, user_index));
             }
             else
             {
-                path.push(thisBus.path.slice(current_index, user_index));
+                path = path.concat(thisBus.path.slice(current_index, user_index));
             }
 
-            var travel_time = thisGuy.distancePath(path);
+
+            var travel_time = thisGuy.distancePath(path) / thisBus.speed;
 
             if (shortest_travel_time > travel_time) 
             {
                 shortest_travel_time = travel_time;
-                best_bus = thisBus;
+                best_transport = thisBus;
             }
 
             console.log(thisBus.name+" user index "+user_index+" current_index "+current_index+" travel_time "+travel_time);
         });
 
 
-    best_transport = best_bus;
+    thisGuy.vehicules['Car'].forEach(function(thisCar)
+        {
+            if (thisCar.available)
+            {
+                var path = [];
+                if (thisCar.current_position != origin)
+                    path = path.concat(path_dict[thisCar.current_position][origin]);
 
-best_transport = thisGuy.vehicules['Bus'][0];
+                path = path.concat(path_dict[origin][destination]);
+
+                var travel_time = thisGuy.distancePath(path) / thisCar.speed;
+
+                if (shortest_travel_time > travel_time) 
+                {
+                    shortest_travel_time = travel_time;
+                    best_transport = thisCar;
+                }
+            }
+        });
+
     return best_transport;
 }
+
+
 //--------------------------------------------------------------------------------------------------
 /*
  * Compute distance along the path
@@ -98,6 +129,11 @@ Guy.prototype.distancePath = function(path)
 
     return distance;
 }
+//--------------------------------------------------------------------------------------------------
+/*
+ * Compute distance between 2 waypoints
+ */
+//--------------------------------------------------------------------------------------------------
 
 Guy.prototype.distance = function(origin, destination)
 {
@@ -112,7 +148,6 @@ Guy.prototype.distance = function(origin, destination)
         dest = STOPS[destination];
     else 
         dest = WAYPOINTS[destination];
-
 
     var dist = Math.pow(dest.cx() - src.cx(), 2);
     dist += Math.pow(dest.cy() - src.cy(), 2);

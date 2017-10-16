@@ -35,6 +35,7 @@ function initGlobalVars()
     WAYPOINTS["point15"] = SVG.adopt(cdo.getElementById("point15"));
     WAYPOINTS["point16"] = SVG.adopt(cdo.getElementById("point16"));
     WAYPOINTS["point17"] = SVG.adopt(cdo.getElementById("point17"));
+    WAYPOINTS["point35"] = SVG.adopt(cdo.getElementById("point35"));
     WAYPOINTS["point69"] = SVG.adopt(cdo.getElementById("point69"));
 
     global_path = path;
@@ -112,9 +113,15 @@ function initGlobalVars()
 
         Car1 = new Voiture("car1",
                             [],
-                            document.getElementById("Bus2_txt"),
-                            SVG.adopt(cdo.getElementById("voiturette1")));
+                            document.getElementById("Car1_txt"),
+                            SVG.adopt(cdo.getElementById("voiturette1")),
+                            "arretbuilding1");
 
+        Car2 = new Voiture("car2",
+                    [],
+                    document.getElementById("Car2_txt"),
+                    SVG.adopt(cdo.getElementById("voiturette2")),
+                    "arretparc");
 }
 
 document.addEventListener("DOMContentLoaded", function(event)
@@ -128,7 +135,7 @@ document.addEventListener("DOMContentLoaded", function(event)
         initGlobalVars();
         var list_of_vehicules = {};
         list_of_vehicules['Bus'] = [Bus1, Bus2];
-        list_of_vehicules['Car'] = [Car1];
+        list_of_vehicules['Car'] = [Car1, Car2];
         GUY = new Guy(list_of_vehicules); 
         nUsers = 0;
 

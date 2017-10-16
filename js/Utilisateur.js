@@ -61,7 +61,6 @@ Utilisateur.prototype.printTime = function()
 Utilisateur.prototype.getIn = function()
 {
     this.inVehicule = true;
-    console.log("I'm in !");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -71,7 +70,6 @@ Utilisateur.prototype.getIn = function()
 //--------------------------------------------------------------------------------------------------
 Utilisateur.prototype.getOut = function()
 {
-    console.log("I'm out!");
     this.inVehicule = false;
     this.end_time = new Date().getTime();
     this.printTime();

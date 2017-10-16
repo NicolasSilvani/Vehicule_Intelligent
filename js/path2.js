@@ -297,7 +297,7 @@ path_dict["arretbuilding1"]["arretparc"] = [
 //---------------------------------------------------
 // arretparc
 //---------------------------------------------------
-path_dict["arretparc"]["arretstation"] =  [
+path_dict["arretparc"]["arretstation"] = "arretstation":    [
                                                         "point5",
                                                         "arretstation"
                                                     ];

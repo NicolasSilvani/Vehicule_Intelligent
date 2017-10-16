@@ -67,7 +67,6 @@ Vehicule.prototype.oneStep = function()
     }
 
     thisVehicule.path_index = next_index;
-                //console.log(thisVehicule.name+" "+next_index);
 
     thisVehicule.icon.animate(duration, '-', 0).center( dest.cx(),
                                                         dest.cy())
@@ -76,7 +75,6 @@ Vehicule.prototype.oneStep = function()
             // Si c'est un arrêt
             if (destination_is_stop)
                 thisVehicule.stop(next_index);
-                console.log(thisVehicule.name+" "+next_index);
 
             thisVehicule.current_index_in_path = thisVehicule.path.indexOf(destination);
             Service.prototype.updateString.call(thisVehicule);
@@ -116,6 +114,8 @@ Vehicule.prototype.stop = function(next_index)
                     user.getOut();
                     thisVehicule.removePersons(1);
                     thisVehicule.users.splice(thisVehicule.users.indexOf(user), 1);
+                    console.log(user.name+" got out of "+thisVehicule.name);
+
                 }
             }
             else

@@ -3,6 +3,7 @@
 	<head>
 		<meta charset=utf-8></meta>
 		<title>Campus du futur</title>
+		<link rel="stylesheet" type="text/css" href="stylesheet.css">
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/2.6.3/svg.min.js"></script>
 		<script type="text/javascript" src="js/Service.js"></script>
 		<script type="text/javascript" src="js/Vehicule.js"></script>
@@ -10,17 +11,24 @@
 		<script type="text/javascript" src="js/Voiture.js"></script>
 		<script type="text/javascript" src="js/Utilisateur.js"></script>		
 		<script type="text/javascript" src="js/Guy.js"></script>
+		<script type="text/javascript" src="js/Path.js"></script>
 		<script type="text/javascript" src="js/script.js"></script>
-		
+
 
 	</head>
 	<body>
-		<object data="campusfutur.svg" type="image/svg+xml" id="campus" alt="Campus"></object>
-		<div id="info">
-		<h3>Campus du futur</h3>
-        <button id="spawnButton">spawn user</button>
-		<a id="Bus1_txt">Bus1 String</a>
-		<a id="Bus2_txt">Bus2 String</a>
+		<div>
+			<div style="width:500px">
+			<object data="campusfutur.svg" type="image/svg+xml" id="campus" alt="Campus"></object>
+			</div>
+			<div id="info" style="width:500px;float:right;">
+				<h3>Campus du futur</h3>
+		        <button id="spawnButton">spawn user</button><br>
+				<a id="Bus1_txt">Bus1 String</a><br>
+				<a id="Bus2_txt">Bus2 String</a><br>
+				<a id="Car1_txt">Car1 String</a><br>
+				<a id="Car2_txt">Car2 String</a><br>
+			</div>
 		</div>
 	</body>
 </html>
