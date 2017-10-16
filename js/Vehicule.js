@@ -3,13 +3,6 @@
  * Vehicule class file.
  */
 //--------------------------------------------------------------------------------------------------
-function wait(ms){
-   var start = new Date().getTime();
-   var end = start;
-   while(end < start + ms) {
-     end = new Date().getTime();
-  }
-}
 
 
 //--------------------------------------------------------------------------------------------------
@@ -34,39 +27,6 @@ Vehicule.prototype.constructor = Vehicule;
  * Make the vehicule follow its entire path
  */
 //--------------------------------------------------------------------------------------------------
-/*
-Vehicule.prototype.runPath = function()
-{
-    var thisVehicule = this;
-
-    var duration = 0;
-    var prevX = thisVehicule.icon.cx();
-    var prevY = thisVehicule.icon.cy();
-    for (i = 0; i < this.path.length; i++)
-    {
-        var distance = Math.pow(thisVehicule.path[i].cx() - prevX, 2);
-        distance += Math.pow(thisVehicule.path[i].cy() - prevY, 2);
-        distance = Math.sqrt(distance);
-
-        duration = Math.round(distance*1000/Vehicule.speed);
-
-        console.log("Animation duration: " + duration + "\tDistance: " + distance + "\tSpeed: " + (distance/duration));
-
-        console.log("x "+thisVehicule.icon.cx()+ "   y "+thisVehicule.icon.cy());
-        thisVehicule.icon.animate(duration, '-', 0).center(thisVehicule.path[i].cx(),
-                                           thisVehicule.path[i].cy())
-        .after(function()
-            {
-                if (Math.random() > 0.3)
-                    thisVehicule.addPersons(1);
-                else 
-                    thisVehicule.removePersons(1);
-            });
-
-    }
-    
-}
-*/
 Vehicule.prototype.runPath = function()
 {
     for (var i = 0; i < this.path.length; i++)
@@ -75,6 +35,11 @@ Vehicule.prototype.runPath = function()
     }
 }
 
+//--------------------------------------------------------------------------------------------------
+/*
+ * Make the vehicule go one step in its path
+ */
+//--------------------------------------------------------------------------------------------------
 Vehicule.prototype.oneStep = function()
 {
 
@@ -115,12 +80,21 @@ Vehicule.prototype.oneStep = function()
 
 }
 
-
+//--------------------------------------------------------------------------------------------------
+/*
+ * Returns the next index in the path 
+ */
+//--------------------------------------------------------------------------------------------------
 Vehicule.prototype.nextPathIndex = function() 
 {
     return (this.path_index + 1) % (this.path.length);
 }
 
+//--------------------------------------------------------------------------------------------------
+/*
+ * Handle passengers at next stop
+ */
+//--------------------------------------------------------------------------------------------------
 Vehicule.prototype.stop = function(next_index)
 {
     var thisVehicule = this;
@@ -151,6 +125,11 @@ Vehicule.prototype.stop = function(next_index)
     }
 }
 
+//--------------------------------------------------------------------------------------------------
+/*
+ * Compute travel time to go from one point to another
+ */
+//--------------------------------------------------------------------------------------------------
 Vehicule.prototype.duration = function(origin, destination)
 {
     /*var src;
