@@ -49,7 +49,7 @@ Bus.prototype.stop = function(next_index)
 
 
     //Guy users
-    Vehicule.prototype.stop.call(thisBus);
+    Vehicule.prototype.stop.call(thisBus, next_index);
 
     // Normal passengers
     if (Math.random() > 0.5)
@@ -59,3 +59,13 @@ Bus.prototype.stop = function(next_index)
     Service.prototype.updateString.call(this);
 }
 
+
+//--------------------------------------------------------------------------------------------------
+/*
+ * Order bus to transport a user
+ */
+//--------------------------------------------------------------------------------------------------
+Bus.prototype.transportUser = function(user)
+{
+    this.users.push(user);
+}

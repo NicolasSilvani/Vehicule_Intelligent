@@ -125,7 +125,10 @@ document.addEventListener("DOMContentLoaded", function(event)
         //Bus1.setString("Hello");
         Bus2.runPath();
         //busIcon.animate().dmove(1000,0);
-        
+        var list_of_vehicules = {};
+        list_of_vehicules['Bus'] = [Bus1, Bus2];
+        list_of_vehicules['Car'] = [Car1];
+        GUY = new Guy(list_of_vehicules); 
     });
 
     spawnButton = document.getElementById("spawnButton");
@@ -133,7 +136,7 @@ document.addEventListener("DOMContentLoaded", function(event)
     spawnButton.addEventListener('mouseup', function(){
         var userDiv = document.createElement("user"+nUsers);
         document.body.appendChild(userDiv);
-        User = new Utilisateur('randomMan',
+        var User = new Utilisateur('randomMan',
                 "arretstation",
                 "arrethopital",
                 userDiv,
@@ -141,7 +144,6 @@ document.addEventListener("DOMContentLoaded", function(event)
         User.setString("Hello I'm user "+nUsers);
         console.log("Hello user!");
 
-
-        Car1.transportUser(User, global_path);
+        GUY.handleUser(User);
     });
 });

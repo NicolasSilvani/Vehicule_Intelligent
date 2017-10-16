@@ -16,6 +16,7 @@ function Vehicule(name, capacity, path, string_object, icon)
     this.path = path;
     this.path_index = 0;
     this.users = [];
+    this.current_index_in_path = 0;
 }
 
 Vehicule.prototype = Object.create(Service.prototype);
@@ -74,6 +75,7 @@ Vehicule.prototype.oneStep = function()
             if (destination_is_stop)
                 thisVehicule.stop(next_index);
 
+            thisVehicule.current_index_in_path = next_index;
             Service.prototype.updateString.call(thisVehicule);
         });
 
@@ -117,6 +119,7 @@ Vehicule.prototype.stop = function(next_index)
             {
                 if (user.start_localisation == thisVehicule.path[next_index])
                 {
+                    console.log(user.name+" got in "+thisVehicule.name);
                     user.getIn();
                     thisVehicule.addPersons(1);
                 }

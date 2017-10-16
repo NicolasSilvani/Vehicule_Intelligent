@@ -17,14 +17,6 @@ function Voiture(name, path, string_object, icon)
 
 Voiture.prototype = Object.create(Vehicule.prototype);
 Voiture.prototype.constructor = Voiture;
-/*
-Voiture.prototype.runPath = function()
-{
-    var thisVoiture = this;
-
-    Vehicule.prototype.runPath.call(thisVoiture);
-}
-*/
 
 //--------------------------------------------------------------------------------------------------
 /*
