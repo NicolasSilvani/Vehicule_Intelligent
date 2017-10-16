@@ -72,6 +72,36 @@ document.addEventListener("DOMContentLoaded", function(event)
             "point17"
             ];
 
+        global_path = path;
+
+        var path2 = ["point11",
+            "arrethopital",
+            "point12",
+            "point13",
+            "arretbuilding2",
+            "point69",
+            "point4",
+            "point6",
+            "point5",
+            "arretparc",
+            "point15",
+            "point16",
+            "arretrestau",
+            "point17",
+            "point1",
+            "arretstation",
+            "point2",
+            "point3",
+            "arretecole",
+            "point4",
+            "point6",
+            "point7",
+            "point8",
+            "point9",
+            "arretbuilding1",
+            "point10"
+            ];        
+
         Bus1 = new Bus("bus1",
                         30,
                         path,
@@ -80,9 +110,14 @@ document.addEventListener("DOMContentLoaded", function(event)
 
         Bus2 = new Bus("bus2",
                         30,
-                        path,
+                        path2,
                         document.getElementById("Bus2_txt"),
                         SVG.adopt(cdo.getElementById("bus2")));
+
+        Car1 = new Voiture("car1",
+                            [],
+                            document.getElementById("Bus2_txt"),
+                            SVG.adopt(cdo.getElementById("voiturette1")));
 
         Bus1.addPersons(4);    
         Bus1.updateString();
@@ -105,6 +140,8 @@ document.addEventListener("DOMContentLoaded", function(event)
                 SVG.adopt(cdo.getElementById("user")));
         User.setString("Hello I'm user "+nUsers);
         console.log("Hello user!");
-        Bus1.users.push(User);
+
+
+        Car1.transportUser(User, global_path);
     });
 });

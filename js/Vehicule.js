@@ -22,7 +22,7 @@ function Vehicule(name, capacity, path, string_object, icon)
     Service.call(this, name, capacity, string_object, icon);
     this.path = path;
     this.path_index = 0;
-    this.users = ["test"];
+    this.users = [];
 }
 
 Vehicule.prototype = Object.create(Service.prototype);
@@ -34,6 +34,7 @@ Vehicule.prototype.constructor = Vehicule;
  * Make the vehicule follow its entire path
  */
 //--------------------------------------------------------------------------------------------------
+/*
 Vehicule.prototype.runPath = function()
 {
     var thisVehicule = this;
@@ -64,6 +65,14 @@ Vehicule.prototype.runPath = function()
 
     }
     
+}
+*/
+Vehicule.prototype.runPath = function()
+{
+    for (var i = 0; i < this.path.length; i++)
+    {
+        this.oneStep();
+    }
 }
 
 Vehicule.prototype.oneStep = function()
@@ -100,7 +109,6 @@ Vehicule.prototype.oneStep = function()
             if (destination_is_stop)
                 thisVehicule.stop(next_index);
 
-
             Service.prototype.updateString.call(thisVehicule);
         });
 
@@ -110,7 +118,37 @@ Vehicule.prototype.oneStep = function()
 
 Vehicule.prototype.nextPathIndex = function() 
 {
-    return (this.path_index + 1) % (this.path.length - 1);
+    return (this.path_index + 1) % (this.path.length);
+}
+
+Vehicule.prototype.stop = function(next_index)
+{
+    var thisVehicule = this;
+
+    //Guy users
+    if (this.users.length > 0)
+    {   
+        this.users.forEach(function(user)
+        {
+            if (user.inVehicule)
+            {   
+                if (user.goal == thisVehicule.path[next_index])
+                {
+                    user.getOut();
+                    thisVehicule.removePersons(1);
+                    thisVehicule.users.splice(thisVehicule.users.indexOf(user), 1);
+                }
+            }
+            else
+            {
+                if (user.start_localisation == thisVehicule.path[next_index])
+                {
+                    user.getIn();
+                    thisVehicule.addPersons(1);
+                }
+            }
+        });
+    }
 }
 
 Vehicule.prototype.duration = function(origin, destination)
