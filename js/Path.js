@@ -1,7 +1,7 @@
 /*
 *arretrestau, arretstation, arretecole, arretbuilding2, arrethospital, arretbuilding1, arretparc
 */
-
+/*
 var path_dict = { "arretrestau":   {
 								"arretstation": 	[	
 														SVG.adopt(cdo.getElementById("point16")),
@@ -320,8 +320,8 @@ var path_dict = { "arretrestau":   {
 						 	  }
 
 		};
-
-var path_dict_2 = { "arretrestau":   {
+*/
+var path_dict = { "arretrestau":   {
 								"arretstation": 	[	
 														"point16",
 														"point15",
@@ -643,6 +643,7 @@ var path_dict_2 = { "arretrestau":   {
 /*
 * Optimal path between two stoppoint
 */
+/*
 function getPath(localisation, destination)
 {
 	var d = path_dict[localisation];
@@ -653,10 +654,10 @@ function getPath(localisation, destination)
 	}
 	return [];
 }
-
-function getPath_2(localisation, destination)
+*/
+function getPath(localisation, destination)
 {
-	var d = path_dict_2[localisation];
+	var d = path_dict[localisation];
 
 	for(var key in d)
 	{
