@@ -122,6 +122,19 @@ function initGlobalVars()
                     document.getElementById("Car2_txt"),
                     SVG.adopt(cdo.getElementById("voiturette2")),
                     "arretparc");
+
+
+        Segway1 = new Segway("segway1",
+                            [],
+                            document.getElementById("Segway1_txt"),
+                            SVG.adopt(cdo.getElementById("segway1")),
+                            "arrethopital");
+
+        Segway2 = new Segway("segway2",
+                    [],
+                    document.getElementById("Segway2_txt"),
+                    SVG.adopt(cdo.getElementById("segway2")),
+                    "arretbuilding2");
 }
 
 document.addEventListener("DOMContentLoaded", function(event)
@@ -136,6 +149,7 @@ document.addEventListener("DOMContentLoaded", function(event)
         var list_of_vehicules = {};
         list_of_vehicules['Bus'] = [Bus1, Bus2];
         list_of_vehicules['Car'] = [Car1, Car2];
+        list_of_vehicules['Segway'] = [Segway1, Segway2];
         GUY = new Guy(list_of_vehicules); 
         nUsers = 0;
 

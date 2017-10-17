@@ -45,6 +45,13 @@ Guy.prototype.handleUser = function(user)
 
         best_transport.transportUser(user, path);
     }
+    else if (best_transport instanceof Segway)
+    {
+        var path = [best_transport.current_position];
+        path = path.concat(path_dict[user.start_localisation][user.goal]);
+
+        best_transport.transportUser(user, path);
+    }
     // Call vehicule
 }
 
@@ -105,6 +112,26 @@ Guy.prototype.best_transport = function(origin, destination)
                 {
                     shortest_travel_time = travel_time;
                     best_transport = thisCar;
+                }
+            }
+        });
+
+    thisGuy.vehicules['Segway'].forEach(function(thisSegway)
+        {
+            if (thisSegway.available)
+            {
+                if (thisSegway.current_position == origin)
+                {
+                    var path = [];
+                    path = path.concat(path_dict[origin][destination]);
+
+                    var travel_time = thisGuy.distancePath(path) / thisSegway.speed;
+
+                    if (shortest_travel_time > travel_time) 
+                    {
+                        shortest_travel_time = travel_time;
+                        best_transport = thisSegway;
+                    }
                 }
             }
         });
