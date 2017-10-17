@@ -48,6 +48,7 @@ Guy.prototype.handleUser = function(user)
     // Get path for vehicule
 
     console.log(user.name+" should use "+best_transport.name+" to go from "+user.start_localisation+" to "+user.goal);
+    user.setString(user.name+" is waiting for "+best_transport.name);
 
     if (best_transport instanceof Bus)
     {   
@@ -70,7 +71,6 @@ Guy.prototype.handleUser = function(user)
 
         best_transport.transportUser(user, path);
     }
-    user.setString(user.name+" is waiting for "+best_transport.name);
     // Call vehicule
 }
 

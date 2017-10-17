@@ -52,10 +52,18 @@ Bus.prototype.stop = function(next_index)
     Vehicule.prototype.stop.call(thisBus, next_index);
 
     // Normal passengers
+    var rand = Math.floor(Math.random()*3)
+
     if (Math.random() > 0.5)
-        this.addPersons(Math.floor(Math.random()*3));
+    {
+        if((this.occupancy + rand) < this.capacity)
+            this.addPersons(rand);
+    }
     else 
-        this.removePersons(Math.floor(Math.random()*3));
+    {
+        if((this.occupancy - rand) > 0)
+            this.removePersons(rand);
+    }
     Service.prototype.updateString.call(this);
 }
 
