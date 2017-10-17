@@ -39,13 +39,14 @@ Utilisateur.prototype.setString = function(newString)
  * Calculate and print user's travel time.
  */
 //--------------------------------------------------------------------------------------------------
-Utilisateur.prototype.printTime = function()
+Utilisateur.prototype.printTime = function(string)
 {
     if(this.end_time != null)
     {
         var travelTime = this.end_time - this.start_time;
         var travelTimeStr = this.name+"'s travel time is "+travelTime;
-        this.setString(travelTime);
+        this.setString(string+travelTime);
+        GUY.newTime(travelTime);
     }
     else
     {
@@ -58,9 +59,11 @@ Utilisateur.prototype.printTime = function()
  * User gets in the vehicule
  */
 //--------------------------------------------------------------------------------------------------
-Utilisateur.prototype.getIn = function()
+Utilisateur.prototype.getIn = function(string)
 {
     this.inVehicule = true;
+    this.setString(string);
+
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -68,10 +71,10 @@ Utilisateur.prototype.getIn = function()
  * User gets out of the vehicule
  */
 //--------------------------------------------------------------------------------------------------
-Utilisateur.prototype.getOut = function()
+Utilisateur.prototype.getOut = function(string)
 {
     this.inVehicule = false;
     this.end_time = new Date().getTime();
-    this.printTime();
+    this.printTime(string);
 }
 

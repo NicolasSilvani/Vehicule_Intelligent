@@ -111,19 +111,16 @@ Vehicule.prototype.stop = function(next_index)
             {   
                 if (user.goal == thisVehicule.path[next_index])
                 {
-                    user.getOut();
+                    user.getOut(user.name+" got out of "+thisVehicule.name+". He arrived in ");
                     thisVehicule.removePersons(1);
                     thisVehicule.users.splice(thisVehicule.users.indexOf(user), 1);
-                    console.log(user.name+" got out of "+thisVehicule.name);
-
                 }
             }
             else
             {
                 if (user.start_localisation == thisVehicule.path[next_index])
                 {
-                    console.log(user.name+" got in "+thisVehicule.name);
-                    user.getIn();
+                    user.getIn(user.name+" got in "+thisVehicule.name);
                     thisVehicule.addPersons(1);
                 }
             }

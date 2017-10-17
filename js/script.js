@@ -150,7 +150,7 @@ document.addEventListener("DOMContentLoaded", function(event)
         list_of_vehicules['Bus'] = [Bus1, Bus2];
         list_of_vehicules['Car'] = [Car1, Car2];
         list_of_vehicules['Segway'] = [Segway1, Segway2];
-        GUY = new Guy(list_of_vehicules); 
+        GUY = new Guy(list_of_vehicules, document.getElementById("average")); 
         nUsers = 0;
 
         Bus1.addPersons(4);    
@@ -166,7 +166,8 @@ document.addEventListener("DOMContentLoaded", function(event)
 
     spawnButton = document.getElementById("spawnButton");
     spawnButton.addEventListener('mouseup', function(){
-        var userDiv = document.createElement("user"+nUsers);
+        var userDiv = document.createElement("user");
+
         document.body.appendChild(userDiv);
         var br = document.createElement("br");
         document.body.appendChild(br);

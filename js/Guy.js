@@ -9,13 +9,31 @@
  * Guy constructor function
  */
 //--------------------------------------------------------------------------------------------------
-function Guy(vehicules)
+function Guy(vehicules, average_string)
 {
     this.vehicules = vehicules;
     this.users = [];
+    this.travel_times = [];
+    this.average_string = average_string;
 }
 
-
+//--------------------------------------------------------------------------------------------------
+/*
+ * Order car to transport a user
+ */
+//--------------------------------------------------------------------------------------------------
+Guy.prototype.newTime = function(travel_time)
+{
+    this.travel_times.push(travel_time);
+    var sum = 0;
+    this.travel_times.forEach(function(value)
+        {
+            sum += value;
+        });
+    this.average = Math.floor(sum / this.travel_times.length);
+    var string = "AVERAGE TRAVEL TIME: "+this.average;
+    this.average_string.innerHTML = string;
+}
 //--------------------------------------------------------------------------------------------------
 /*
  * Order car to transport a user
@@ -52,6 +70,7 @@ Guy.prototype.handleUser = function(user)
 
         best_transport.transportUser(user, path);
     }
+    user.setString(user.name+" is waiting for "+best_transport.name);
     // Call vehicule
 }
 
